@@ -78,7 +78,7 @@ function printHoliday(date) {
             for (var i = 0; i < holidays.length; i++) {
                 
                 var thisHoliday = holidays[i];
-                var listItem = $('li[data-complete-date="' + thisHoliday.date + '"]');
+                var listItem = $('div[data-complete-date="' + thisHoliday.date + '"]');
 
                 if(listItem) {
                     listItem.addClass('holiday');
