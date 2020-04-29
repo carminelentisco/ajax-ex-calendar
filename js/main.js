@@ -3,9 +3,7 @@
  */
 $(document).ready(function () {
     
-    /**
-     * SETUP
-     */
+    // Setup
 
     // Punto di partenza
     var baseMonth = moment('2018-01-01'); 
@@ -20,6 +18,56 @@ $(document).ready(function () {
     // ottieni festività mese corrente
     printHoliday(baseMonth);
 
+    /**
+     * 
+     * Seconda parte
+     *  
+    */
+
+    /******************************************************************* */
+
+    // Clone della data originale
+    var dateClone = moment(baseMonth);  // Copia della data
+     
+
+    // numero giorni nel mese
+    
+    
+    // Collegamento ai bottoni
+    var btnIndietro = $('.btn-indietro');
+    var btnAvanti = $('.btn-avanti');
+    
+ 
+    btnAvanti.on('click', function() {
+    
+        // Manda avanti i mesi di 1
+        var testdate = dateClone;
+
+        console.log(testdate.month());
+        
+        if ( testdate.month() < 11 ) {
+            dateClone.add(1, 'M');
+            printMonth(template,dateClone);
+            printHoliday(dateClone);
+        }
+                
+    });
+
+    btnIndietro.on('click', function() {
+    
+        // Manda avanti i mesi di 1
+        dateClone.subtract(1, 'M');
+        $('.month-list').html(' ');
+        printMonth(template,dateClone);
+        printHoliday(dateClone);
+
+        if ( dateClone.month() === 0 ) {
+            alert('Go forword!!');
+        }
+                
+    });
+    
+
 }); // <-- End doc ready
 
 
@@ -28,16 +76,17 @@ $(document).ready(function () {
  *************************************/
 
 // Stampa a schermo i giorni del mese
-function printMonth(template, date) {
-    // numero giorni nel mese
-    var daysInMonth = date.daysInMonth();
-
+function printMonth(template, date ) {
+    $('.month-list').html(' ');
+    
+    
     //  setta header
     $('h1').html( date.format('MMMM YYYY') );
 
     // Imposta data attribute data visualizzata
     $('.month').attr('data-this-date',  date.format('YYYY-MM-DD'));
-
+    
+    var daysInMonth = date.daysInMonth();
     // genera giorni mese
     for (var i = 0; i < daysInMonth; i++) {
         // genera data con moment js
@@ -57,7 +106,10 @@ function printMonth(template, date) {
         //compilare e aggiungere template
         var html = template(context);
         $('.month-list').append(html);
+
     }
+        
+
 }
 
 // Ottieni e stampa festività
