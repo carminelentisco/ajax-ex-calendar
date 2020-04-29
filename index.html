@@ -5,27 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
 </head>
 
 <body>
     
 
     <div class="container">
+
+        <header>
+            <h1 class="month title"></h1>
+        </header>
+       
+        <section class="calendar">
+            <div class="month-list"></div>
+        </section>
         
-        <button class="btn-indietro">INDIETRO</button>
-        <button class="btn-avanti">AVANTI</button>
 
-        <h1 class="month"></h1>
+        <!-- Action -->
+        <section class="arrow">
+            <i class="fas fa-arrow-left btn-indietro"></i>
+            <i class="fas fa-arrow-right btn-avanti"></i>
+        </section>
 
-        <ul class="month-list"></ul>
     </div>
 
 
     <!-- TEMPLATES HANDLEBARS -->
     <script id="day-template" type="text/x-handlebars-template">
-        <li class="{{ class }}" data-complete-date="{{ completeDate }}">
+        <div class="box {{ class }}" data-complete-date="{{ completeDate }}">
             {{ day }}
-        </li>
+        </div>
     </script>
 
 
