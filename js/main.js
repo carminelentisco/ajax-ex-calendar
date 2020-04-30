@@ -30,7 +30,6 @@ $(document).ready(function () {
             printHoliday(dateClone);
         }        
     });
-    
 
 }); // <-- End doc ready
 
@@ -58,6 +57,7 @@ function printMonth(template, date ) {
         };   
         var html = template(context);                                           
         $('.month-list').append(html);
+        
     }
         
 }
